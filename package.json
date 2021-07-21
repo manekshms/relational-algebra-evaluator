@@ -2,11 +2,11 @@
   "name": "relational-algebra-evaluator",
   "version": "1.0.0",
   "description": "Relational Algebra Evaluator",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "Maneksh M S",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --declaration",
     "dev": "yarn build --watch --preserveWatchOutput",
     "lint": "eslint src --ext js,ts",
     "test": "jest"
@@ -16,6 +16,8 @@
     "yarn": "1.22.10"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.170",
+    "@types/node": "^15.12.5",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
     "eslint": "^7.29.0",
@@ -23,5 +25,11 @@
     "eslint-plugin-prettier": "^3.4.0",
     "prettier": "^2.3.2",
     "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "@types/uuid": "^8.3.0",
+    "lodash": "^4.17.21",
+    "moments": "^0.0.2",
+    "uuid": "^8.3.2"
   }
 }
