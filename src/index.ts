@@ -1,8 +1,9 @@
 export * from './Rae';
 // import { Rae } from './Rae';
 
+// const data = 'X( (S/name=Bob/(users)), (S/name=Bob/(users)) )';
 //const data = 'P/staff_name,bob/(S/user=2/(table,table2))';
-//const data = 'P/age/(S/name=Bob/(users))';
+// const data = 'P/age/(S/name=Bob/(users))';
 // const data = 'P/age/(S/name=Bob/(P/age,name/(users)))';
 // const data = 'X(users,users)';
 // const data = 'P/age/(S/name=Bob/(users))';
@@ -14,8 +15,9 @@ export * from './Rae';
 //const data = 'P/age/(U(users,(P/name,age/(users))))';
 // const data = 'SD(employees,users)';
 // const data = 'var data = P/name/(users)';
-// const selectData = 'S/name=Bob/(data)';
+// const selectData = 'S/name=Bob/((P/name/(users)))';
 // const data = 'show relations';
+// const data = 'view users';
 // const rae = Rae.getInstance();
 
 // console.log(rae.execute(data));

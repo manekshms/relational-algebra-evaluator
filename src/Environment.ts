@@ -4,11 +4,29 @@ import fs from 'fs';
 import { v4 as uuid } from 'uuid';
 import _ from 'lodash';
 
+interface Data {
+  [key: string]: string;
+}
+
+interface Relations {
+  [key: string]: Data[];
+}
+
+interface Variables {
+  [key: string]: Data[];
+}
+
+interface SessionData {
+  createdAt: string;
+  relations: Relations;
+  variables: Variables;
+}
+
 export class Environment {
   private dataDir: string = path.resolve(__dirname, '..', 'data') + path.sep;
   public constructor(private sessionId?: string) {}
 
-  public setDataDir(dataDir: string) {
+  public setDataDir(dataDir: string): void {
     this.dataDir = dataDir;
   }
 
@@ -20,7 +38,7 @@ export class Environment {
     }
   }
 
-  public addRelations(relations: string) {
+  public addRelations(relations: string): boolean {
     const sessionData = this.loadSessionData();
     const newRelations = JSON.parse(relations);
     sessionData.relations = { ...sessionData.relations, ...newRelations };
@@ -62,7 +80,7 @@ export class Environment {
     return sessionId;
   }
 
-  public loadSessionData() {
+  public loadSessionData(): SessionData {
     const sessionFilePath = `${this.dataDir}${this.sessionId}.json`;
     if (!fs.existsSync(sessionFilePath)) {
       throw new TypeError('Invalid session');
@@ -71,7 +89,7 @@ export class Environment {
     return JSON.parse(sessionData);
   }
 
-  public getRelationData(name: string) {
+  public getRelationData(name: string): Data[] {
     const data = this.loadSessionData();
     if (data.relations[name]) {
       return data.relations[name];
@@ -79,7 +97,7 @@ export class Environment {
     throw new Error(`Relation not found ${name}`);
   }
 
-  public getAllRelations() {
+  public getAllRelations(): string[] {
     const data = this.loadSessionData();
     const relations = [];
     for (let key in data.relations) {
@@ -88,7 +106,7 @@ export class Environment {
     return relations;
   }
 
-  public isRelationExists(name: string) {
+  public isRelationExists(name: string): boolean {
     const data = this.loadSessionData();
     if (!data.relations[name]) {
       return false;
@@ -96,7 +114,10 @@ export class Environment {
     return true;
   }
 
-  public updateRelationName(nameOfRelation: string, newRelationName: string) {
+  public updateRelationName(
+    nameOfRelation: string,
+    newRelationName: string
+  ): boolean {
     const data = this.loadSessionData();
     if (!data.relations[nameOfRelation]) {
       throw new Error(`Relation not found ${nameOfRelation}`);
@@ -108,7 +129,7 @@ export class Environment {
     return true;
   }
 
-  public createNewVariable(name: string, data: any) {
+  public createNewVariable(name: string, data: any): void {
     const sessionData = this.loadSessionData();
     // check relation exists
     if (sessionData.relations[name]) {
@@ -125,7 +146,7 @@ export class Environment {
     fs.writeFileSync(fileLocation, JSON.stringify(sessionData));
   }
 
-  public getVariableData(name: string) {
+  public getVariableData(name: string): Data[] {
     const sessionData = this.loadSessionData();
     if (!sessionData.variables[name]) {
       throw new Error(`${name} is not defined`);
@@ -133,7 +154,7 @@ export class Environment {
     return sessionData.variables[name];
   }
 
-  public isVariableExists(name: string) {
+  public isVariableExists(name: string): boolean {
     const sessionData = this.loadSessionData();
     if (!sessionData.variables[name]) {
       return false;

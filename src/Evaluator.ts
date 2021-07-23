@@ -1,5 +1,27 @@
 import { Environment } from './Environment';
 import { StandardLibrary } from './StandardLibrary';
+import {
+  AlgebricOperator,
+  AlgebricOperatorTypeAst,
+  AstType,
+  IdentiferAst,
+  ProjectionAst,
+  RenameAst,
+  SelectionAst,
+  VariableDeclarationAst,
+} from './parse';
+
+interface RelationData {
+  [key: string]: string;
+}
+
+export type EvaluatorResult =
+  | RelationData
+  | string
+  | boolean
+  | RelationData[]
+  | RelationData[][]
+  | string[];
 
 export class Evaluator {
   public constructor(
@@ -7,28 +29,20 @@ export class Evaluator {
     private standardLibrary: StandardLibrary
   ) {}
 
-  public executeOperator(astNode: any) {
-    if (astNode.name === 'Projection') {
-      let from: any;
-      if (Array.isArray(astNode.from)) {
-        from = this.run(astNode.from[0]);
-      } else {
-        from = this.run(astNode.from);
-      }
-      const projectionColumns = astNode.projectionColumns.map(
+  public executeRelationalAlgebricOperator(
+    astNode: AlgebricOperatorTypeAst
+  ): RelationData[][] | RelationData[] | boolean {
+    if (astNode.name === AlgebricOperator.Projection) {
+      const from = <RelationData[]>this.run(astNode.from);
+      const projectionColumns = (<ProjectionAst>astNode).projectionColumns.map(
         (item: any) => item.value
       );
       return this.standardLibrary.projection(from, projectionColumns);
     }
 
-    if (astNode.name === 'Selection') {
-      let from: any;
-      if (Array.isArray(astNode.from)) {
-        from = this.run(astNode.from[0]);
-      } else {
-        from = this.run(astNode.from);
-      }
-      const conditions = astNode.conditions.map((item: any) => {
+    if (astNode.name === AlgebricOperator.Selection) {
+      const from = <RelationData[]>this.run(astNode.from);
+      const conditions = (<SelectionAst>astNode).conditions.map((item: any) => {
         return {
           name: item.name,
           operator: item.operator,
@@ -38,64 +52,69 @@ export class Evaluator {
       return this.standardLibrary.selection(from, conditions);
     }
 
-    if (astNode.name === 'Rename') {
+    if (astNode.name === AlgebricOperator.Rename) {
       return this.standardLibrary.rename(
-        astNode.relationName,
-        astNode.newRelationName
+        (<RenameAst>astNode).relationName,
+        (<RenameAst>astNode).newRelationName
       );
     }
 
-    if (astNode.name === 'CartesianProduct') {
-      let fromOne: any;
-      let fromTwo: any;
-      if (Array.isArray(astNode.from)) {
-        fromOne = this.run(astNode.from[0]);
-        fromTwo = this.run(astNode.from[1]);
-      } else {
-        throw new Error('Cartesian product need two dataset');
-      }
-      return this.standardLibrary.cartesianProduct(fromOne, fromTwo);
+    if (astNode.name === AlgebricOperator.CartesianProduct) {
+      const [first, second] = this.run(astNode.from) as RelationData[][];
+      return this.standardLibrary.cartesianProduct(first, second);
     }
 
-    if (astNode.name === 'Union') {
-      let results: any[] = [];
-      if (Array.isArray(astNode.from)) {
-        astNode.from.forEach((item: any) => {
-          results.push(this.run(item));
-        });
-      } else {
-        throw new Error('Cartesian product need two dataset');
-      }
+    if (astNode.name === AlgebricOperator.Union) {
+      const results = this.run(astNode.from) as RelationData[];
       return this.standardLibrary.union(...results);
     }
 
-    if (astNode.name === 'SetDifference') {
-      let left: any;
-      let right: any;
-      if (Array.isArray(astNode.from)) {
-        if (astNode.from.length !== 2) {
-          throw new Error('Two relation is required to perform set difference');
-        }
-        left = this.run(astNode.from[0]);
-        right = this.run(astNode.from[1]);
-      } else {
-        throw new Error('Cartesian product need two dataset');
-      }
+    if (astNode.name === AlgebricOperator.SetDifference) {
+      const [left, right] = this.run(astNode.from) as RelationData[][];
       return this.standardLibrary.setDifference(left, right);
     }
+    throw new Error('Invalid expression');
   }
 
-  public loadRelation(astNode: any) {
+  public execute(
+    astNode: AstType
+  ): RelationData | RelationData[] | string[] | RelationData[][] {
+    if (Array.isArray(astNode)) {
+      return astNode.map((item) => this.execute(item)) as
+        | RelationData[]
+        | RelationData[][]
+        | string[];
+    }
+    if (astNode.type === 'Identifier') {
+      const data = this.loadIdentifier(astNode);
+      return data;
+    }
+
+    if (astNode.type === 'VariableDeclaration') {
+      return this.createVariable(astNode);
+    }
+
+    if (astNode.type === 'ShowRelations') {
+      return this.showRelations();
+    }
+
+    if (!Array.isArray(astNode) && astNode.type === 'CallExpression') {
+      return this.run(astNode.value) as RelationData;
+    }
+    throw new Error('Invalid expression');
+  }
+
+  public loadRelation(astNode: IdentiferAst): RelationData[] {
     const data = this.environment.getRelationData(astNode.value);
     return data;
   }
 
-  public showRelations() {
+  public showRelations(): string[] {
     const data = this.environment.getAllRelations();
     return data;
   }
 
-  public loadIdentifier(astNode: any) {
+  public loadIdentifier(astNode: IdentiferAst): RelationData[] {
     // check relation
     const relationExists = this.environment.isRelationExists(astNode.value);
     if (relationExists) {
@@ -109,29 +128,18 @@ export class Evaluator {
     throw new Error('No Relation or identifier exists');
   }
 
-  public createVariable(astNode: any) {
+  public createVariable(astNode: VariableDeclarationAst): RelationData[] {
     const variableName = astNode.identifier;
-    const data = this.run(astNode.value);
+    const data = this.run(astNode.value) as RelationData[];
     this.environment.createNewVariable(variableName, data);
     return data;
   }
 
-  public run(astNode: any): any {
-    if (astNode.type === 'Operator') {
-      return this.executeOperator(astNode);
-    }
-
-    if (astNode.type === 'Identifier') {
-      const data = this.loadIdentifier(astNode);
-      return data;
-    }
-
-    if (astNode.type === 'VariableDeclaration') {
-      return this.createVariable(astNode);
-    }
-
-    if (astNode.type === 'ShowRelations') {
-      return this.showRelations();
+  public run(astNode: AstType): EvaluatorResult {
+    if (!Array.isArray(astNode) && astNode.type === 'Operator') {
+      return this.executeRelationalAlgebricOperator(astNode);
+    } else {
+      return this.execute(astNode);
     }
   }
 }
