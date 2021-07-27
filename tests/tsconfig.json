@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.json",
+  "references": [
+    {
+      "path": "../",
+      "name": "relational-algebra-evaluator"
+    }
+  ],
+  "compilerOptions": {
+    "rootDir": "../",
+    "types": ["jest"],
+    "noEmit": true
+  },
+  "include": ["."]
+}
