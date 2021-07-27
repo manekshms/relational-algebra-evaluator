@@ -297,7 +297,7 @@ const parser: Parser = {
       utils.pop(tokens);
     }
     const parenthesisClosed = utils.pop(tokens);
-    if (parenthesisClosed) {
+    if (!parenthesisClosed) {
       throw new Error('"(" is missing');
     }
     return operation;
