@@ -1,15 +1,10 @@
 {
   "users": [
-    {
-      "name": "Bob",
-      "age": 23
-    },
-    {
-      "name": "Jack",
-      "age": 15
-    },
-    {
-      "name": "Bob"
-    }
+    { "name": "Bob", "age": 30 },
+    { "name": "Jim", "age": 45 }
+  ],
+  "employees": [
+    { "name": "Bob", "age": 30 },
+    { "name": "Foo", "age": 23 }
   ]
 }

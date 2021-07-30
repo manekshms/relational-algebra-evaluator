@@ -17,10 +17,11 @@ import { Rae } from './Rae';
 //const data = 'X((P/name,age/(users)),(P/name,age/(users)))';
 //const data = 'P/age/(U(users,(P/name,age/(users))))';
 // const data = 'SD(employees,users)';
-const data = 'var data = P/name/(users)';
+// const data = 'var data = P/name/(users)';
 // const selectData = 'S/name=Bob/((P/name/(users)))';
 // const data = 'show relations';
 // const data = 'view users';
+const data = 'U(users, employees)';
 const rae = Rae.getInstance();
 
 console.log(rae.execute(data));

@@ -23,6 +23,8 @@ interface SessionData {
 }
 
 export class Environment {
+  private defaultDataDir: string =
+    path.resolve(__dirname, '..', 'data') + path.sep;
   private dataDir: string = path.resolve(__dirname, '..', 'data') + path.sep;
   public constructor(private sessionId?: string) {}
 
@@ -53,28 +55,26 @@ export class Environment {
     if (!fs.existsSync(sessionFilePath)) {
       throw new TypeError('Invalid session');
     }
-    const sessionData = fs.readFileSync(sessionFilePath, { encoding: 'utf8' });
+    fs.readFileSync(sessionFilePath, { encoding: 'utf8' });
     return this.sessionId as string;
   }
 
   public createNewSession(): string {
     const sessionId = uuid();
+    let relationsFilePath = `${this.dataDir}db.json`;
+    if (!fs.existsSync(relationsFilePath)) {
+      relationsFilePath = `${this.defaultDataDir}db.json`;
+    }
+    const relationsData = fs.readFileSync(relationsFilePath, {
+      encoding: 'utf8',
+    });
+    const relations = JSON.parse(relationsData);
     const data = {
       createdAt: moment(),
-      relations: {
-        users: [
-          { name: 'Bob', age: 30 },
-          { name: 'Jim', age: 45 },
-        ],
-        employees: [
-          { name: 'Bob', age: 30 },
-          { name: 'Foo', age: 23 },
-        ],
-      },
       variables: {},
+      relations,
     };
     const fileLocation = `${this.dataDir}${sessionId}.json`;
-    console.log(fileLocation);
     fs.writeFileSync(fileLocation, JSON.stringify(data));
     this.sessionId = sessionId;
     return sessionId;

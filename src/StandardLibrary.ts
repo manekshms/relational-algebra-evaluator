@@ -65,7 +65,7 @@ export class StandardLibrary {
     return _.differenceWith(left, right, _.isEqual);
   };
 
-  public union(...args: RelationalData[]): RelationalData[] {
+  public union(...args: RelationalData[][]): RelationalData[] {
     const data = _.flatten<RelationalData>(args);
     return _.unionWith(data, _.isEqual);
   }
