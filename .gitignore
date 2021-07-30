@@ -118,5 +118,6 @@ dist
 .pnp.*
 
 # Custom
+.DS_Store
 data/*
 !data/db.json

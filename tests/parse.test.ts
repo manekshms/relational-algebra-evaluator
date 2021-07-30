@@ -209,4 +209,88 @@ describe('Parse', () => {
     };
     expect(result).toEqual(expected);
   });
+
+  test('It should create AST for view', () => {
+    const token = [
+      { type: 'Name', value: 'view' },
+      { type: 'Name', value: 'users' },
+    ];
+    const result = parse(token);
+    const expected = {
+      type: 'Identifier',
+      value: 'users',
+    };
+    expect(result).toEqual(expected);
+  });
+
+  test('It should create AST for show', () => {
+    const token = [
+      { type: 'Name', value: 'show' },
+      { type: 'Name', value: 'relations' },
+    ];
+    const result = parse(token);
+    const expected = {
+      type: 'ShowRelations',
+    };
+    expect(result).toEqual(expected);
+  });
+
+  test('It should create AST for nested expressions', () => {
+    const token = [
+      { type: 'Name', value: 'P' },
+      { type: 'ForwardSlash', value: '/' },
+      { type: 'Name', value: 'age' },
+      { type: 'Operator', value: ',' },
+      { type: 'Name', value: 'name' },
+      { type: 'ForwardSlash', value: '/' },
+      { type: 'Parenthesis', value: '(' },
+      { type: 'Parenthesis', value: '(' },
+      { type: 'Name', value: 'S' },
+      { type: 'ForwardSlash', value: '/' },
+      { type: 'Name', value: 'age' },
+      { type: 'Operator', value: '=' },
+      { type: 'Name', value: 'name' },
+      { type: 'ForwardSlash', value: '/' },
+      { type: 'Parenthesis', value: '(' },
+      { type: 'Name', value: 'user' },
+      { type: 'Parenthesis', value: ')' },
+      { type: 'Parenthesis', value: ')' },
+      { type: 'Parenthesis', value: ')' },
+    ];
+    const result = parse(token);
+    const expected = {
+      type: 'Operator',
+      name: 'Projection',
+      projectionColumns: [
+        {
+          type: 'ProjectionColumn',
+          value: 'age',
+        },
+        {
+          type: 'ProjectionColumn',
+          value: 'name',
+        },
+      ],
+      from: {
+        type: 'CallExpression',
+        value: {
+          conditions: [
+            {
+              name: 'age',
+              operator: '=',
+              type: 'Condition',
+              value: 'name',
+            },
+          ],
+          from: {
+            type: 'Identifier',
+            value: 'user',
+          },
+          name: 'Selection',
+          type: 'Operator',
+        },
+      },
+    };
+    expect(result).toEqual(expected);
+  });
 });
