@@ -1,7 +1,7 @@
 import { Token } from './tokenize';
 import * as utils from './utils';
 
-interface CallExpressionAst {
+export interface CallExpressionAst {
   type: 'CallExpression';
   value: AstType;
 }
@@ -64,7 +64,7 @@ export interface RenameAst extends AlgebricOperatorTypeAst {
   name: AlgebricOperator.Rename;
   relationName: string;
   newRelationName: string;
-  from: IdentiferAst;
+  from: any;
 }
 
 export interface VariableDeclarationAst {

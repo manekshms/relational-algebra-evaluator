@@ -5,8 +5,6 @@ export const isParenthesis = (text: string): boolean =>
 export const isParenthesisOpen = (text: string): boolean => text === '(';
 export const isParenthesisClosed = (text: string): boolean => text === ')';
 export const isForwardSlash = (text: string): boolean => text === '/';
-// export const isRelationalAlgebricOperator = (text: string): boolean =>
-//   ['P', 'X', 'S', 'SD', 'U', 'R', 'var', 'show', 'view'].includes(text);
 export const isReservedKeyWord = (text: string): boolean =>
   ['P', 'X', 'S', 'SD', 'U', 'R', 'var', 'show', 'view'].includes(text);
 
