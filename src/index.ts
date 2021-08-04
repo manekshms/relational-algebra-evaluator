@@ -1,5 +1,5 @@
-// export * from './Rae';
-import { Rae } from './Rae';
+export * from './Rae';
+// import { Rae } from './Rae';
 
 // const data = 'X( (S/name=Bob/(users)), (S/name=Bob/(users)) )';
 //const data = 'P/staff_name,bob/(S/user=2/(table,table2))';
@@ -21,9 +21,9 @@ import { Rae } from './Rae';
 // const selectData = 'S/name=Bob/((P/name/(users)))';
 // const data = 'show relations';
 // const data = 'view users';
-const data = 'U(users, employees)';
-const rae = Rae.getInstance();
+// const data = 'U(users, employees)';
+// const rae = Rae.getInstance();
 
-console.log(rae.execute(data));
+// console.log(rae.execute(data));
 // console.log(rae.execute(selectData));
 //console.log(rae.execute('S/name=Bob/(a)'));

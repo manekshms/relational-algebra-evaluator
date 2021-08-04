@@ -6,7 +6,7 @@
   "author": "Maneksh M S",
   "license": "MIT",
   "scripts": {
-    "build": "tsc --declaration",
+    "build": "rimraf dist && tsc --declaration",
     "dev": "yarn build --watch --preserveWatchOutput",
     "lint": "eslint src --ext js,ts",
     "test": "jest"
@@ -31,6 +31,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "jest": "^27.0.6",
     "prettier": "^2.3.2",
+    "rimraf": "^3.0.2",
     "typescript": "^4.3.4"
   },
   "dependencies": {

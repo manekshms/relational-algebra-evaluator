@@ -30,15 +30,19 @@ export class Rae {
     return new Rae(environment);
   }
 
+  public getSessionId(): string | undefined {
+    return this.environment.getSessionId();
+  }
+
   public setDataDir(dataDir: string): void {
     this.environment.setDataDir(dataDir);
   }
 
-  public addRelations(data: string): void {
-    this.environment.addRelations(data);
+  public addRelations(data: string): boolean {
+    return this.environment.addRelations(data);
   }
 
-  public showRelations(): string[] {
+  public getAllRelations(): string[] {
     return this.environment.getAllRelations();
   }
 

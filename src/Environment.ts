@@ -59,6 +59,10 @@ export class Environment {
     return this.sessionId as string;
   }
 
+  public getSessionId(): string | undefined {
+    return this.sessionId;
+  }
+
   public createNewSession(): string {
     const sessionId = uuid();
     let relationsFilePath = `${this.dataDir}db.json`;
