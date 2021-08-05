@@ -66,7 +66,6 @@ export class Evaluator {
 
     if (astNode.name === AlgebricOperator.Union) {
       const results = this.run(astNode.from) as RelationData[][];
-      console.log(results);
       return this.standardLibrary.union(...results);
     }
 
