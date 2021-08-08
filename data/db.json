@@ -1,10 +1,166 @@
 {
-  "users": [
-    { "name": "Bob", "age": 30 },
-    { "name": "Jim", "age": 45 }
+  "book": [
+    {
+      "id": "1",
+      "title": "Computer Fundamentals",
+      "author": "AMJohn",
+      "publication": "AMC",
+      "Subject": "Computer"
+    },
+    {
+      "id": "2",
+      "title": "Operating Systems",
+      "author": "PeterParker",
+      "publication": "AMC",
+      "Subject": "Computer"
+    },
+    {
+      "id": "3",
+      "title": "Computer Networks",
+      "author": "AB Simpson",
+      "publication": "Bernard's",
+      "Subject": "Computer"
+    },
+    {
+      "id": "4",
+      "title": "My Autobiography",
+      "author": "MKGandhi",
+      "publication": "Goyal",
+      "Subject": "Autobiography"
+    },
+    {
+      "id": "5",
+      "title": "Chinese Cooking",
+      "author": "RumalaRao",
+      "publication": "Diwan",
+      "Subject": "Cooking"
+    },
+    {
+      "id": "6",
+      "title": "The Freedom Struggle",
+      "author": "MKBose",
+      "publication": "Bose",
+      "Subject": "General"
+    },
+    {
+      "id": "7",
+      "title": "Home PC",
+      "author": "PJ Dilbert",
+      "publication": "AMC",
+      "Subject": "Computer"
+    },
+    {
+      "id": "8",
+      "title": "Gardening",
+      "author": "SK Das",
+      "publication": "Das&Das",
+      "Subject": "Home improvement"
+    },
+    {
+      "id": "9",
+      "title": "You and Your Dog",
+      "author": "ERP Slater",
+      "publication": "Home and Away",
+      "Subject": "Home improvement"
+    },
+    {
+      "id": "10",
+      "title": "Math for Small Children",
+      "author": "BReid",
+      "publication": "ChildrenBooks",
+      "Subject": "Children"
+    }
   ],
-  "employees": [
-    { "name": "Bob", "age": 30 },
-    { "name": "Foo", "age": 23 }
+  "maleTable": [
+    {
+      "person": "Ram",
+      "department": "Accounts"
+    },
+    {
+      "person": "Sham",
+      "department": "Sales"
+    }
+  ],
+  "femaleTable": [
+    {
+      "person": "Radha",
+      "department": "Accounts"
+    },
+    {
+      "person": "Geeta",
+      "department": "Sales"
+    }
+  ],
+  "salesPeople": [
+    { "id": "101", "sName": "Ram", "city": "Pune", "commission": "10" },
+    { "id": "102", "sName": "Ana", "city": "Pune", "commission": "12" },
+    { "id": "103", "sName": "Jyoti", "city": "Mumbai", "commission": "11" },
+    { "id": "104", "sName": "Reghu", "city": "Delhi", "commission": "14" },
+    { "id": "105", "sName": "Deepa", "city": "Chennai", "commission": "12" }
+  ],
+  "customers": [
+    {
+      "id": "201",
+      "cName": "Amrita",
+      "city": "Pune",
+      "orderAmt": "10000",
+      "sNum": "102"
+    },
+    {
+      "id": "202",
+      "cName": "Rekha",
+      "city": "Pune",
+      "orderAmt": "12700",
+      "sNum": "101"
+    },
+    {
+      "id": "203",
+      "cName": "Dheeraj",
+      "city": "Delhi",
+      "orderAmt": "18080",
+      "sNum": "104"
+    },
+    {
+      "id": "204",
+      "cName": "Prasad",
+      "city": "Delhi",
+      "orderAmt": "12810",
+      "sNum": "104"
+    },
+    {
+      "id": "205",
+      "cName": "Srinath",
+      "city": "Mumbai",
+      "orderAmt": "15610",
+      "sNum": "103"
+    },
+    {
+      "id": "206",
+      "cName": "Meena",
+      "city": "Chennai",
+      "orderAmt": "14374",
+      "sNum": "105"
+    }
+  ],
+  "student": [
+    { "student": "Ruchi", "language": "English" },
+    { "student": "Subha", "language": "Hindi" },
+    { "student": "Ruchi", "language": "Hindi" },
+    { "student": "Ravi", "language": "Marathi" }
+  ],
+  "teacher": [
+    { "teacher": "Sandeep", "language": "English" },
+    { "teacher": "Sunil", "language": "English" },
+    { "teacher": "Sunil", "language": "Marathi" },
+    { "teacher": "Abhijit", "language": "Hindi" },
+    { "teacher": "Dhananjay", "language": "French" }
+  ],
+  "tableA": [
+    { "cName": "Ruchi", "city": "Pune" },
+    { "cName": "Subha", "city": "Mumbai" }
+  ],
+  "tableB": [
+    { "cName": "Ravi", "city": "Delhi" },
+    { "cName": "Ruchi", "city": "Pune" }
   ]
 }
