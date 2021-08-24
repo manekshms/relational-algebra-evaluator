@@ -1,9 +1,14 @@
 {
   "name": "relational-algebra-evaluator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Relational Algebra Evaluator",
   "main": "dist/index.js",
-  "author": "Maneksh M S",
+  "types": "dist/index.d.ts",
+  "author": {
+    "name": "Maneksh M S",
+    "email": "manekshms@gmail.com",
+    "url": "http://manekshms.com"
+  },
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist && tsc --declaration",
@@ -39,5 +44,14 @@
     "lodash": "^4.17.21",
     "moments": "^0.0.2",
     "uuid": "^8.3.2"
+  },
+  "keywords": [
+    "relational algebra",
+    "relational algebra evaluator",
+    "evaluator"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manekshms/relational-algebra-evaluator"
   }
 }
