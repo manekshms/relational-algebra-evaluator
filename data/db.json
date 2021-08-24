@@ -92,51 +92,51 @@
     }
   ],
   "salesPeople": [
-    { "id": "101", "sName": "Ram", "city": "Pune", "commission": "10" },
-    { "id": "102", "sName": "Ana", "city": "Pune", "commission": "12" },
-    { "id": "103", "sName": "Jyoti", "city": "Mumbai", "commission": "11" },
-    { "id": "104", "sName": "Reghu", "city": "Delhi", "commission": "14" },
-    { "id": "105", "sName": "Deepa", "city": "Chennai", "commission": "12" }
+    { "id": "101", "name": "Ram", "city": "Pune", "commission": "10" },
+    { "id": "102", "name": "Ana", "city": "Pune", "commission": "12" },
+    { "id": "103", "name": "Jyoti", "city": "Mumbai", "commission": "11" },
+    { "id": "104", "name": "Reghu", "city": "Delhi", "commission": "14" },
+    { "id": "105", "name": "Deepa", "city": "Chennai", "commission": "12" }
   ],
   "customers": [
     {
       "id": "201",
-      "cName": "Amrita",
+      "name": "Amrita",
       "city": "Pune",
       "orderAmt": "10000",
       "sNum": "102"
     },
     {
       "id": "202",
-      "cName": "Rekha",
+      "name": "Rekha",
       "city": "Pune",
       "orderAmt": "12700",
       "sNum": "101"
     },
     {
       "id": "203",
-      "cName": "Dheeraj",
+      "name": "Dheeraj",
       "city": "Delhi",
       "orderAmt": "18080",
       "sNum": "104"
     },
     {
       "id": "204",
-      "cName": "Prasad",
+      "name": "Prasad",
       "city": "Delhi",
       "orderAmt": "12810",
       "sNum": "104"
     },
     {
       "id": "205",
-      "cName": "Srinath",
+      "name": "Srinath",
       "city": "Mumbai",
       "orderAmt": "15610",
       "sNum": "103"
     },
     {
       "id": "206",
-      "cName": "Meena",
+      "name": "Meena",
       "city": "Chennai",
       "orderAmt": "14374",
       "sNum": "105"
