@@ -1,9 +1,12 @@
 {
   "name": "relational-algebra-evaluator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Relational Algebra Evaluator",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
   "author": {
     "name": "Maneksh M S",
     "email": "manekshms@gmail.com",
