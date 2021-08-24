@@ -5,70 +5,70 @@
       "title": "Computer Fundamentals",
       "author": "AMJohn",
       "publication": "AMC",
-      "Subject": "Computer"
+      "subject": "Computer"
     },
     {
       "id": "2",
       "title": "Operating Systems",
       "author": "PeterParker",
       "publication": "AMC",
-      "Subject": "Computer"
+      "subject": "Computer"
     },
     {
       "id": "3",
       "title": "Computer Networks",
       "author": "AB Simpson",
       "publication": "Bernard's",
-      "Subject": "Computer"
+      "subject": "Computer"
     },
     {
       "id": "4",
       "title": "My Autobiography",
       "author": "MKGandhi",
       "publication": "Goyal",
-      "Subject": "Autobiography"
+      "subject": "Autobiography"
     },
     {
       "id": "5",
       "title": "Chinese Cooking",
       "author": "RumalaRao",
       "publication": "Diwan",
-      "Subject": "Cooking"
+      "subject": "Cooking"
     },
     {
       "id": "6",
       "title": "The Freedom Struggle",
       "author": "MKBose",
       "publication": "Bose",
-      "Subject": "General"
+      "subject": "General"
     },
     {
       "id": "7",
       "title": "Home PC",
       "author": "PJ Dilbert",
       "publication": "AMC",
-      "Subject": "Computer"
+      "subject": "Computer"
     },
     {
       "id": "8",
       "title": "Gardening",
       "author": "SK Das",
       "publication": "Das&Das",
-      "Subject": "Home improvement"
+      "subject": "Home improvement"
     },
     {
       "id": "9",
       "title": "You and Your Dog",
       "author": "ERP Slater",
       "publication": "Home and Away",
-      "Subject": "Home improvement"
+      "subject": "Home improvement"
     },
     {
       "id": "10",
       "title": "Math for Small Children",
       "author": "BReid",
       "publication": "ChildrenBooks",
-      "Subject": "Children"
+      "subject": "Children"
     }
   ],
   "maleTable": [
