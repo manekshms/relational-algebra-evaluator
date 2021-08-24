@@ -5,6 +5,12 @@
 </div>
 🔥 Relational algebra evaluator
 
+## Example Application
+
+### [Back end API](https://github.com/manekshms/relational-algebra-evaluator-api)
+
+### [Front end](https://github.com/manekshms/relational-algebra-evaluator-ui)
+
 ## Table of Contents
 
 - [Install](#install)
@@ -211,4 +217,4 @@ R/newRelationName/(users)
 
 ## Author
 
-Maneksh M S
+[Maneksh M S](http://manekshms.com)
